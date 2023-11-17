@@ -35,8 +35,8 @@ jobs:
         docker push thanosmourtk/fantasy_realm_server:${{ github.ref_name }}
     - name: Build and push Docker image for latest (AMD64)
       run: |
-        docker buildx build -t thanosmourtk/fantasy_realm_server:latest .
-        docker buildx build -t thanosmourtk/fantasy_realm_server:latest --push
+        docker build -t thanosmourtk/fantasy_realm_server:latest .
+        docker push thanosmourtk/fantasy_realm_server:latest
 
     - name: Set up QEMU for ARM64
       run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
