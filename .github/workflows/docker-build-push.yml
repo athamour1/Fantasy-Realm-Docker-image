@@ -24,6 +24,7 @@ jobs:
         sed -i 's|COPY \./Fantasy_Realm_Server_Pack_v3 /root/Fantasy_Realm_Server_Pack_v3|COPY ./Fantasy_Realm_Server_Pack_v3 /home/runner/Fantasy_Realm_Server_Pack_v3|' Dockerfile
         ls -al
         cat Dockerfile
+        pwd
 
     - name: Login to Docker Hub
       uses: docker/login-action@v1
@@ -50,5 +51,3 @@ jobs:
       run: |
         docker buildx build --platform linux/amd64,linux/arm64 -t your-docker-hub-username/your-image-name:latest .
         docker buildx build --platform linux/amd64,linux/arm64 -t your-docker-hub-username/your-image-name:latest --push
-
-
