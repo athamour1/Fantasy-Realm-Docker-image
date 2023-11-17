@@ -16,12 +16,12 @@ jobs:
     - name: Download and unzip server pack
       run: |
         wget https://mediafilez.forgecdn.net/files/4787/577/Fantasy_Realm_Server_Pack_v3.zip
-        mkdir -p /home/runner/Fantasy_Realm_Server_Pack_v3
-        unzip Fantasy_Realm_Server_Pack_v3.zip -d /home/runner/Fantasy_Realm_Server_Pack_v3
+        mkdir -p $GITHUB_WORKSPACE/Fantasy_Realm_Server_Pack_v3
+        unzip Fantasy_Realm_Server_Pack_v3.zip -d $GITHUB_WORKSPACE/Fantasy_Realm_Server_Pack_v3
 
     - name: Replace COPY path in Dockerfile
       run: |
-        sed -i 's|COPY \./Fantasy_Realm_Server_Pack_v3 /root/Fantasy_Realm_Server_Pack_v3|COPY ./Fantasy_Realm_Server_Pack_v3 /home/runner/Fantasy_Realm_Server_Pack_v3|' Dockerfile
+        sed -i 's|COPY \./Fantasy_Realm_Server_Pack_v3 /root/Fantasy_Realm_Server_Pack_v3|COPY ./Fantasy_Realm_Server_Pack_v3 $GITHUB_WORKSPACE/Fantasy_Realm_Server_Pack_v3|' Dockerfile
         ls -al
         cat Dockerfile
         pwd
@@ -36,6 +36,10 @@ jobs:
       run: |
         docker build -t your-docker-hub-username/your-image-name:${{ github.ref_name }} .
         docker push your-docker-hub-username/your-image-name:${{ github.ref_name }}
+    - name: Build and push Docker image for latest (AMD64)
+      run: |
+        docker buildx build -t your-docker-hub-username/your-image-name:latest .
+        docker buildx build -t your-docker-hub-username/your-image-name:latest --push
 
     - name: Set up QEMU for ARM64
       run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
