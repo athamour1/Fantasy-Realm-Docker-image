@@ -1,0 +1,15 @@
+version: "3"
+
+volumes:
+  minecraft: {}
+
+services:
+  minecraft:
+    build: thanosmourtk/fantasy_realm_server:latest
+    ports:
+      - 25565:25565
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    volumes:
+      - minecraft:/root/Fantasy_Realm_Server_Pack_v3
