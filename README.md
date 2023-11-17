@@ -24,6 +24,7 @@ volumes:
 services:
   minecraft:
     image: thanosmourtk/fantasy_realm_server:latest
+    container_name: realm_server
     ports:
       - 25565:25565
     tty: true
