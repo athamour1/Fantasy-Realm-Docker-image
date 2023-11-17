@@ -21,7 +21,7 @@ jobs:
 
     - name: Replace COPY path in Dockerfile
       run: |
-        sed -i 's|COPY \./Fantasy_Realm_Server_Pack_v3 /root/Fantasy_Realm_Server_Pack_v3|COPY ./Fantasy_Realm_Server_Pack_v3 $GITHUB_WORKSPACE/Fantasy_Realm_Server_Pack_v3|' Dockerfile
+        sed -i 's|COPY \./Fantasy_Realm_Server_Pack_v3 /root/Fantasy_Realm_Server_Pack_v3|COPY ./Fantasy_Realm_Server_Pack_v3 /home/runner/work/Fantasy-Realm-Docker-image/Fantasy-Realm-Docker-image/Fantasy_Realm_Server_Pack_v3|' Dockerfile
         cat Dockerfile
         ls -al
         pwd
