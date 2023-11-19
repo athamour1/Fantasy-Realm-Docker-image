@@ -43,5 +43,5 @@ docker compose up -d
 To attach in the minecraft console use the following command (or you can use something like portainer)
 
 ```bash
-docker exec -it forge_mods_test-minecraft-1 tmux attach -t minecraft
+docker exec -it realm_server tmux attach -t minecraft
 ```
